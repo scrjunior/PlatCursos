@@ -3,7 +3,7 @@
 <head>
   <meta charset="ISO-8859-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Upload de Vídeo</title>
+  <title>Criar Curso</title>
   <!-- Bootstrap CSS -->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
   <style>
@@ -68,21 +68,55 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    $(document).ready(function() {
-      // Adicionar vídeo à lista quando um arquivo é selecionado
-      $('#videoFile').on('change', function() {
-        var files = $(this)[0].files;
-        for (var i = 0; i < files.length; i++) {
-          var fileName = files[i].name;
-          $('#sortable').append('<li class="list-group-item">' + fileName + '</li>');
-        }
-      });
+  $(document).ready(function() {
+	    // Adicionar vídeo à lista quando um arquivo é selecionado
+	    $('#videoFile').on('change', function() {
+	        var files = $(this)[0].files;
+	        for (var i = 0; i < files.length; i++) {
+	            var file = files[i];
+	            var fileName = file.name;
+	            
+	            // Remove file extension from video title
+	            var videoTitle = fileName.replace(/\.[^/.]+$/, "");
+	            
+	            // Display video title in the list
+	            $('#sortable').append('<li class="list-group-item">' + videoTitle + '</li>');
+	            
+	            // Print video title to console for debugging
+	            console.log('Video Title:', videoTitle);
+	            
+	            // Create a FormData object to send data to the servlet
+	            var formData = new FormData();
+	            formData.append('videos', file); // Add the video file to FormData
+	            formData.append('videoTitulo', videoTitle); // Add video title to FormData
+	            
+	            // Send video file and additional data to the servlet
+	            $.ajax({
+	                url: 'uploadImage',
+	                type: 'POST',
+	                data: formData,
+	                processData: false,
+	                contentType: false,
+	                success: function(response) {
+	                    console.log('Video uploaded successfully');
+	                    // Redirect to success page after successful upload
+	                    window.location.href = 'success.jsp';
+	                },
+	                error: function(xhr, status, error) {
+	                    console.error('Error uploading video: ' + error);
+	                    // Handle error as needed
+	                }
+	            });
+	        }
+	    });
 
-      // Adicionar comportamento ao botão "Adicionar Vídeo"
-      $('#addVideoButton').click(function() {
-        $('#videoFile').click();
-      });
-    });
+	    // Adicionar comportamento ao botão "Adicionar Vídeo"
+	    $('#addVideoButton').click(function() {
+	        $('#videoFile').click();
+	    });
+	});
+
+
   </script>
 </body>
 </html>

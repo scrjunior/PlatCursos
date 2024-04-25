@@ -18,7 +18,7 @@ import javax.servlet.http.Part;
 import cursos.base.DB;
 
 @WebServlet(name = "uploadImage", urlPatterns = {"/uploadImage"})
-@MultipartConfig(maxFileSize = 56177216) // 1.5mb
+@MultipartConfig(maxFileSize = 156177216) 
 public class uploadImage extends HttpServlet {
 
     @Override
@@ -42,7 +42,7 @@ public class uploadImage extends HttpServlet {
             psCurso.setDouble(4, preco);
             psCurso.executeUpdate();
 
-            // Retrieve the auto-generated ID of the inserted 
+            // Retrieve the auto-generated ID of the inserted curso
             int idCurso;
             try (ResultSet generatedKeys = psCurso.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
@@ -55,18 +55,28 @@ public class uploadImage extends HttpServlet {
             // Get form data for videos
             for (Part part : request.getParts()) {
                 if ("videos".equals(part.getName())) {
+                    // Extract video title without file extension
+                    String fileName = extractFileName(part);
+                    String videoTitulo = fileName.replaceFirst("\\.[^.]+$", "");
+
+                    // Set default duration to 0
+                    int videoDuracao = 0;
+
                     // Insert video data into videos table
                     InputStream is = part.getInputStream();
-                    PreparedStatement psVideo = con.prepareStatement("INSERT INTO videos (id_curso, video) VALUES (?, ?)");
+                    PreparedStatement psVideo = con.prepareStatement("INSERT INTO videos (id_curso, titulo, video, duracao) VALUES (?, ?, ?, ?)");
                     psVideo.setInt(1, idCurso);
-                    psVideo.setBlob(2, is);
+                    psVideo.setString(2, videoTitulo);
+                    psVideo.setBlob(3, is);
+                    psVideo.setInt(4, videoDuracao);
                     psVideo.executeUpdate();
                     is.close();
+
+                    System.out.println("Video Title: " + videoTitulo);
+                    System.out.println("Video Duration: " + videoDuracao);
                 }
             }
 
-
-            //asasa
             response.sendRedirect("success.jsp");
         } catch (Exception e) {
             // Print error message to console
@@ -75,5 +85,17 @@ public class uploadImage extends HttpServlet {
             response.sendRedirect("error.jsp");
         }
 
+    }
+
+    // Method to extract file name from content-disposition header of part
+    private String extractFileName(Part part) {
+        String contentDisposition = part.getHeader("content-disposition");
+        String[] items = contentDisposition.split(";");
+        for (String item : items) {
+            if (item.trim().startsWith("filename")) {
+                return item.substring(item.indexOf("=") + 2, item.length() - 1);
+            }
+        }
+        return "";
     }
 }
