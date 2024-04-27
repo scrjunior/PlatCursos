@@ -1,0 +1,27 @@
+    html,
+    body {
+        padding: 0;
+        overflow-x: hidden;
+    }
+    
+    body {
+        margin: 0;
+        font-family: 'Lato', sans-serif;
+    }
+    
+    nav {
+        display: flex;
+        justify-content: space-between;
+        font-size: 15px;
+        padding-left: 20px;
+        padding-right: 20px;
+        font-weight: bold;
+    }
+    
+    .nav-op1:hover,
+    .nav-op2:hover,
+     :hover .nav-op3:hover,
+    .nav-op4:hover {
+        opacity: 0.50;
+        cursor: pointer;
+    }

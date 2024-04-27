@@ -18,7 +18,7 @@
 </head>
 <body>
   <div class="container mt-5">
-    <h1 class="mb-4">Upload de Vídeo</h1>
+    <h1 class="mb-4">Criar Curso</h1>
     
     <!-- Formulário para upload de vídeo -->
     
@@ -43,6 +43,12 @@
         <label for="preco">Preço do Curso:</label>
         <input type="text" class="form-control" id="preco" name="preco" placeholder="Insira o preço do curso" required>
       </div>
+      
+      <div class="form-group">
+        <label for="bannerImage">Banner do Curso:</label>
+        <input type="file" class="form-control-file" id="bannerImage" name="bannerImage" accept="image/*" required>
+    </div>
+      
       <hr>
 
       <!-- Lista de vídeos -->
@@ -60,6 +66,8 @@
       <!-- Botão para adicionar vídeo -->
       <button type="button" id="addVideoButton" class="btn btn-primary mt-3">Adicionar Vídeo</button>
       <button type="submit" class="btn btn-success mt-3">Enviar para Backend</button>
+      <input type="hidden" id="videoDuration" name="videoDuration" value="">
+      
     </form>
   </div>
 
@@ -69,20 +77,20 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
   $(document).ready(function() {
-	    // Adicionar vídeo à lista quando um arquivo é selecionado
+	    
 	    $('#videoFile').on('change', function() {
 	        var files = $(this)[0].files;
 	        for (var i = 0; i < files.length; i++) {
 	            var file = files[i];
 	            var fileName = file.name;
 	            
-	            // Remove file extension from video title
+	            
 	            var videoTitle = fileName.replace(/\.[^/.]+$/, "");
 	            
-	            // Display video title in the list
+	            
 	            $('#sortable').append('<li class="list-group-item">' + videoTitle + '</li>');
 	            
-	            // Print video title to console for debugging
+	            
 	            console.log('Video Title:', videoTitle);
 	            
 	            // Create a FormData object to send data to the servlet

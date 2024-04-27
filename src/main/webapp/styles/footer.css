@@ -1,0 +1,122 @@
+footer {
+    height: 350px;
+    background-color: #eeeeee;
+    margin-top: 50px;
+    padding: 30px;
+    position: relative;
+}
+
+.footer-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    column-gap: 5px;
+    padding-top: 20px;
+}
+
+.newsletter-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.newsletter {
+    padding: 10px 100px 10px 8px;
+    border: 1px solid #000;
+    outline: none;
+}
+
+footer button {
+    margin-left: 10px;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px 10px 20px;
+    font-size: 17px;
+    transition: opacity 0.15s;
+}
+
+footer ul {
+    padding: 0;
+}
+
+footer li {
+    list-style: none;
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+footer li:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+h3 {
+    margin: 0;
+}
+
+.follow-container {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+}
+
+.media-icon {
+    height: 30px;
+    margin-right: 10px;
+}
+
+.copyright-bar {
+    background-color: #000;
+    padding: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.copyright-text {
+    margin: 0;
+    color: #fff;
+    text-align: center;
+}
+
+.pay-method {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.payment-container {
+    margin-top: 16px;
+}
+
+.payment-icon {
+    margin-top: 16px;
+    display: flex;
+}
+
+@media(max-width:725px) {
+    footer {
+        height: 300px;
+        background-color: #eeeeee;
+        margin-top: 50px;
+        padding: 30px;
+        position: relative;
+    }
+    .footer-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 5px;
+        padding-top: 20px;
+    }
+    .newsletter-container {
+        display: none;
+    }
+    footer li {
+        margin-right: 20px;
+    }
+    .payment-container,
+    .media-icon-container,
+    .third-foot-list {
+        display: none;
+    }
+}

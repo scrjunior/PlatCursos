@@ -1,0 +1,175 @@
+ .category-hover,
+ .nav-op1,
+ .nav-op2,
+ .nav-op3,
+ .nav-op4 {
+     padding-top: 10px;
+     padding-bottom: 10px;
+ }
+ 
+ .category-hover {
+     position: relative;
+ }
+ 
+ .category-hover ul {
+     list-style: none;
+     margin: 0;
+     padding-top: 8px;
+     padding-left: 10px;
+ }
+ 
+ .category-hover li {
+     margin-bottom: 8px;
+ }
+ 
+ .category-hover li:hover {
+     text-decoration: underline;
+     cursor: pointer;
+ }
+ 
+ .category-list {
+     font-weight: normal;
+ }
+ 
+ .category-list li:hover {
+     font-weight: bold;
+ }
+ 
+ .category-list {
+     position: absolute;
+     top: 38px;
+     left: -5px;
+     height: 315px;
+     width: 200px;
+     padding-bottom: 20px;
+     background-color: #ffffff;
+     z-index: 1;
+     visibility: hidden;
+ }
+ 
+ .category-hover:hover .category-list {
+     visibility: visible;
+ }
+ 
+ .smart-hover,
+ .clothes-hover,
+ .watch-hover,
+ .computers-hover,
+ .motors-hover,
+ .health-hover,
+ .sports-hover,
+ .women-hover,
+ .men-hover {
+     position: relative;
+ }
+ 
+ .smartphone-list {
+     position: absolute;
+     top: -8px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .clothes-list {
+     position: absolute;
+     top: -34px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .watch-list {
+     position: absolute;
+     top: -60px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .computers-list {
+     position: absolute;
+     top: -86px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .motors-list {
+     position: absolute;
+     top: -112px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .health-list {
+     position: absolute;
+     top: -138px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .sports-list {
+     position: absolute;
+     top: -164px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .women-list {
+     position: absolute;
+     top: -190px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .men-list {
+     position: absolute;
+     top: -216px;
+     left: 190px;
+     height: 335px;
+     width: 200px;
+     background-color: #f5f5f5;
+     visibility: hidden;
+     font-weight: normal;
+ }
+ 
+ .smart-hover:hover .smartphone-list,
+ .clothes-hover:hover .clothes-list,
+ .watch-hover:hover .watch-list,
+ .computers-hover:hover .computers-list,
+ .motors-hover:hover .motors-list,
+ .health-hover:hover .health-list,
+ .sports-hover:hover .sports-list,
+ .women-hover:hover .women-list,
+ .men-hover:hover .men-list {
+     visibility: visible;
+ }

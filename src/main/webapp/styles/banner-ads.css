@@ -1,0 +1,73 @@
+h2 {
+    font-weight: 900;
+    margin: 0;
+}
+
+.price-bottom-banner {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.bottom-button {
+    margin-top: 10px;
+    border: none;
+    padding: 8px;
+    border-radius: 5px;
+    background-color: #000;
+    font-size: 15px;
+    color: #fff;
+}
+
+.img-banner-container {
+    display: flex;
+    justify-content: center;
+}
+
+.shoes {
+    width: 100%;
+    height: 200px;
+    object-fit: contain;
+}
+
+@media (min-width:200px) and (max-width: 500px) {
+    .bottom-banner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: #f1f1f1;
+        height: 200px;
+        margin-top: 40px;
+        align-items: center;
+    }
+    .lema {
+        display: none;
+    }
+}
+
+@media (max-width:600px) {
+    .lema {
+        display: none;
+    }
+    .bottom-title-banner {
+        padding-right: 0;
+    }
+}
+
+@media(min-width:601px) {
+    .bottom-title-banner {
+        padding-right: 80px;
+    }
+}
+
+@media (min-width:501px) and (max-width: 2560px) {
+    .bottom-banner {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        background-color: #f1f1f1;
+        height: 200px;
+        margin-top: 40px;
+        margin-right: 20px;
+        margin-left: 20px;
+        align-items: center;
+    }
+}
