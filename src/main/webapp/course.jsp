@@ -54,6 +54,19 @@
         .video-item {
             margin-bottom: 20px;
         }
+        /* Estilos para vídeos */
+        .video-container {
+            position: relative;
+            width: 100%; /* Largura total do container */
+            padding-bottom: 56.25%; /* Proporção 16:9 (para vídeos) */
+        }
+        .video-container video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -73,23 +86,37 @@
                 <p><strong>Preço:</strong> R$ <%= curso.getPreco() %></p>
             </div>
 
-            <%-- Exibir lista de vídeos --%>
+            <%-- Exibir lista de vídeos como um acordeão --%>
             <div class="video-list">
                 <h3>Vídeos do Curso</h3>
                 <% List<VideoBean> videos = curso.getVideos(); %>
                 <% if (videos != null && !videos.isEmpty()) { %>
-                    <ul>
+                    <div id="accordion">
+                        <% int index = 1; %>
                         <% for (VideoBean video : videos) { %>
-                            <li class="video-item">
-                                <h4><%= video.getTitulo() %></h4>
-                                <video width="400" controls>
-                                    <source src="videoServlet?videoId=<%= video.getId() %>" type="video/mp4">
+                            <div class="card">
+                                <div class="card-header" id="heading<%= index %>">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link" data-toggle="collapse" data-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+                                            <%= video.getTitulo() %>
+                                        </button>
+                                    </h5>
+                                </div>
 
-                                    Your browser does not support HTML5 video.
-                                </video>
-                            </li>
+                                <div id="collapse<%= index %>" class="collapse" aria-labelledby="heading<%= index %>" data-parent="#accordion">
+                                    <div class="card-body">
+                                        <div class="video-container">
+                                            <video controls>
+                                                <source src="videoServlet?videoId=<%= video.getId() %>" type="video/mp4">
+                                                Your browser does not support HTML5 video.
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% index++; %>
                         <% } %>
-                    </ul>
+                    </div>
                 <% } else { %>
                     <p>Nenhum vídeo disponível para este curso.</p>
                 <% } %>
