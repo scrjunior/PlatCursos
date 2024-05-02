@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
     <div class="modal-content">
         <span class="close">&times;</span>
         <h2>Login</h2>
-        <form id="loginForm">
+        <form id="loginForm" method="post" action="LoginServlet">
             <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
             <label for="password">Senha:</label>
@@ -129,52 +129,58 @@ pageEncoding="UTF-8"%>
     </div>
     <div class="products">
         <% 
-            List<CursosBean> cursos = (List<CursosBean>) request.getAttribute("cursos");
-            if (cursos != null && !cursos.isEmpty()) {
-                for (CursosBean curso : cursos) {
-                    String bannerBase64 = curso.getBannerBase64();
-        %>
-        <div class="product-preview product-preview-3">
-            <div>
-               <img class="images" src="data:image/png;base64,<%= bannerBase64 %>" alt="product-image">
-            </div>
-            <div>
-                <div class="prod-title"><%= curso.getTitulo() %></div>
-                <div class="prod-desc"><%= curso.getDescricao() %></div>
-                <div class="durac"><%= curso.getDuracao() %> Horas</div>
-                <div class="description-product">
-                    <div class="price-container">
-                        <div class="price"><%= curso.getPreco() %></div>
-                    </div>
-                    <div>
-                        <button class="add-to-cart">Ver mais</button>
-                        <img class="add-to-favo" src="icons/favorite-svgrepo-com.svg" alt="add-to-favorites">
-                    </div>
+    List<CursosBean> cursos = (List<CursosBean>) request.getAttribute("cursos");
+    if (cursos != null && !cursos.isEmpty()) {
+        for (CursosBean curso : cursos) {
+            String bannerBase64 = curso.getBannerBase64();
+%>
+
+<!-- Link para detalhes do curso -->
+<a href="detalhescurso?cursoId=<%= curso.getId() %>">
+    <div class="product-preview product-preview-3">
+        <div>
+            <img class="images" src="data:image/png;base64,<%= bannerBase64 %>" alt="product-image">
+        </div>
+        <div>
+            <div class="prod-title"><%= curso.getTitulo() %></div>
+            <div class="prod-desc"><%= curso.getDescricao() %></div>
+            <div class="durac"><%= curso.getDuracao() %> Horas</div>
+            <div class="description-product">
+                <div class="price-container">
+                    <div class="price"><%= curso.getPreco() %></div>
+                </div>
+                <div>
+                    <button class="add-to-cart">Ver mais</button>
+                    <img class="add-to-favo" src="icons/favorite-svgrepo-com.svg" alt="add-to-favorites">
                 </div>
             </div>
         </div>
-        <% 
-                }
-            } else {
-        %>
-        <div class="product-preview product-preview-3">
-            <div>
-                <img class="images" src="https://www.example.com/default-image.jpg" alt="product-image">
-            </div>
-            <div>
-                <div class="prod-title">Sem cursos disponiveis</div>
-                <div class="desc">Infelizmente ocorreu um erro.</div>
-                <div class="durac">-</div>
-                <div class="description-product">
-                    <div class="price-container">
-                        <div class="price">-</div>
-                    </div>
-                </div>
+    </div>
+</a>
+
+<% 
+        }
+    } else {
+%>
+<div class="product-preview product-preview-3">
+    <div>
+        <img class="images" src="https://www.example.com/default-image.jpg" alt="product-image">
+    </div>
+    <div>
+        <div class="prod-title">Sem cursos disponíveis</div>
+        <div class="desc">Infelizmente ocorreu um erro.</div>
+        <div class="durac">-</div>
+        <div class="description-product">
+            <div class="price-container">
+                <div class="price">-</div>
             </div>
         </div>
-        <% 
-            }
-        %>
+    </div>
+</div>
+<% 
+    }
+%>
+
     </div>
 </div>
 
