@@ -1,6 +1,7 @@
 package cursos.bean;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class CursosBean {
     private int id;
@@ -10,6 +11,16 @@ public class CursosBean {
     private double preco;
     private InputStream bannerInputStream;
     private String bannerBase64;
+    private List<VideoBean> videos;
+    
+    
+    public List<VideoBean> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(List<VideoBean> videos) {
+        this.videos = videos;
+    }
 
     public int getId() {
         return id;
