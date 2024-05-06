@@ -5,6 +5,24 @@
     margin-right: 20px;
 }
 
+footer li .admin{
+	text-align:left;
+	margin-top:100px !important;
+	font-weight:bold !important;
+}
+
+
+ul a {
+  color: black; /* Define a cor do texto para preto */
+  text-decoration: none; /* Remove o sublinhado padrão */
+}
+
+/* Estilo para o link ao passar o mouse (hover) */
+ul a:hover {
+  text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+  /* Você pode adicionar mais estilos ao hover, se desejar */
+}
+
 .best-seller-head,
 .super-deals-head {
     display: flex;

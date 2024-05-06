@@ -226,6 +226,10 @@ pageEncoding="UTF-8"%>
                     <li>Seja nosso parceiro</li>
                     <li>Programa de afiliados</li>
                     <li>Caridade</li>
+                  
+                </ul>
+                <ul>
+                <a href="admin.jsp"><li class="admin">Admin</li></a>
                 </ul>
             </div>
             <div>
@@ -244,6 +248,7 @@ pageEncoding="UTF-8"%>
                         <div class="icon-cont">
                             <img class="media-icon" src="icons/facebook-svgrepo-com.svg" alt="al">
                         </div>
+                        
                     </div>
                 </div>
                 <div class="payment-container">

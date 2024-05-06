@@ -30,7 +30,7 @@ public class DetalhesCursoServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if (session.getAttribute("usuarioLogado") == null) {
             // Se o usuário não estiver autenticado, redirecionar para o modal de login
-            response.sendRedirect("index.jsp#loginModal");
+            response.sendRedirect("getcursos#loginModal");
             return;
         }
 
