@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cursos.base.DB;
 
@@ -26,8 +27,12 @@ public class LoginServlet extends HttpServlet {
 
         // Verificar se o email e a senha são válidos
         if (authenticateUser(email, senha)) {
-            // Se a autenticação for bem-sucedida, redirecionar para a página principal do usuário
-            response.sendRedirect("paginaPrincipal.jsp"); // Substitua "paginaPrincipal.jsp" pela sua página principal
+            // Se a autenticação for bem-sucedida, definir a variável de sessão 'usuarioLogado' como true
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioLogado", true);
+
+            // Redirecionar para a página principal do usuário
+            response.sendRedirect("getcursos"); // Substitua "getcursos" pela sua página principal
         } else {
             // Se a autenticação falhar, exibir mensagem de erro
             response.getWriter().println("Credenciais inválidas. Tente novamente.");

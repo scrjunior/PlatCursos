@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import cursos.base.DB;
 import cursos.bean.CursosBean;
@@ -26,6 +27,14 @@ public class DetalhesCursoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        if (session.getAttribute("usuarioLogado") == null) {
+            // Se o usuário não estiver autenticado, redirecionar para o modal de login
+            response.sendRedirect("index.jsp#loginModal");
+            return;
+        }
+
+        // Se o usuário estiver autenticado, prosseguir com a obtenção dos detalhes do curso
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -106,4 +115,5 @@ public class DetalhesCursoServlet extends HttpServlet {
             }
         }
     }
+
 }

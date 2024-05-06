@@ -145,3 +145,15 @@
         grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
+
+/* Estilo padrão para o link */
+a.link {
+  color: black; /* Define a cor do texto para preto */
+  text-decoration: none; /* Remove o sublinhado padrão */
+}
+
+/* Estilo para o link ao passar o mouse (hover) */
+a.link:hover {
+  text-decoration: none; /* Remove o sublinhado ao passar o mouse */
+  /* Você pode adicionar mais estilos ao hover, se desejar */
+}

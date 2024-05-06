@@ -18,8 +18,18 @@ import javax.servlet.http.HttpServletResponse;
 import cursos.base.DB;
 import cursos.bean.CursosBean;
 
-@WebServlet(name = "GetCursosServlet", urlPatterns = {"/getcursos"})
+@WebServlet(name = "GetCursosServlet", urlPatterns = {"/getcursos"}, loadOnStartup = 1)
 public class GetCursosServlet extends HttpServlet {
+	
+	
+	@Override
+    public void init() throws ServletException {
+        // Este método é chamado quando o servlet é inicializado
+        super.init();
+        
+        // Você pode colocar aqui qualquer código de inicialização necessário
+        // Este código será executado quando o servlet for carregado
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -52,7 +62,7 @@ public class GetCursosServlet extends HttpServlet {
             }
             
             request.setAttribute("cursos", cursos);
-            request.getRequestDispatcher("market.jsp").forward(request, response);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (SQLException e) {
             // Handle the exception, for example:
             e.printStackTrace();
