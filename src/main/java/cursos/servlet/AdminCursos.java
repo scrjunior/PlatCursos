@@ -25,7 +25,7 @@ public class AdminCursos extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Verificar se o usuário é um administrador (pode ser implementado de acordo com sua lógica)
+       
         
 
         Connection con = null;
