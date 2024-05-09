@@ -49,14 +49,14 @@ public class RegistroServlet extends HttpServlet {
             int rowsAffected = stmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                // Registro inserido com sucesso, definir a sessão do usuário
+                
                 HttpSession session = request.getSession();
                 session.setAttribute("usuarioLogado", true);
 
-                // Redirecionar para a página principal do usuário (getcursos)
+                
                 response.sendRedirect("getcursos");
             } else {
-                response.getWriter().println("Falha ao inserir registro.");
+            	response.sendRedirect("getcursos?authError=true");
             }
         } catch (SQLException e) {
             e.printStackTrace();

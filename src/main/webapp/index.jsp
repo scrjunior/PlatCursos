@@ -41,14 +41,12 @@ pageEncoding="UTF-8"%>
             </div>
 
             <div class="middle-section">
-                <div class="search-filter">
-                    <span>All</span>
-                    <span class="down-arrow">&#9660;</span>
-                </div>
-                <input class="search-bar" type="text" placeholder="Buscar">
-                <div class="search-button">
-                    <img class="search-icon" src="icons/search.svg" alt="search-icon">
-                </div>
+                 <div class="err">
+        <% String errorMessage = (String) request.getAttribute("errorMessage"); %>
+        <% if (errorMessage != null && !errorMessage.isEmpty()) { %>
+            <p style="color: red;"><%= errorMessage %></p>
+        <% } %>
+    </div>
             </div>
 
 	            	<div class="right-section">
@@ -62,7 +60,7 @@ pageEncoding="UTF-8"%>
 	    </div>
 	</div>
 
-<!-- Modal -->
+
 <div id="loginModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -74,12 +72,13 @@ pageEncoding="UTF-8"%>
             <input type="password" id="password" name="password" required>
             <button type="submit">Entrar</button>
         </form>
+        
         <p>Ainda não tem uma conta? <a href="#" id="registerLink">Registrar</a></p>
     </div>
 </div>
 
             	
-        <!-- Modal de Registro -->
+        
 <div id="registerModal" class="modal">
     <div class="modal-content">
         <span class="close">&times;</span>
@@ -127,9 +126,11 @@ pageEncoding="UTF-8"%>
 
     <div class="best-seller-section">
     <div class="best-seller-head">
+   
         <div>Curso quentes</div>
         <div class="view-all-text">VER TODOS</div>
     </div>
+    
     <div class="products">
         <% 
     List<CursosBean> cursos = (List<CursosBean>) request.getAttribute("cursos");
@@ -138,7 +139,7 @@ pageEncoding="UTF-8"%>
             String bannerBase64 = curso.getBannerBase64();
 %>
 
-<!-- Link para detalhes do curso -->
+
 <a class="link" href="detalhescurso?cursoId=<%= curso.getId() %>">
     <div class="product-preview product-preview-3">
         <div>
@@ -150,7 +151,7 @@ pageEncoding="UTF-8"%>
             <div class="durac"><%= curso.getDuracao() %> Horas</div>
             <div class="description-product">
                 <div class="price-container">
-                    <div class="price"><%= curso.getPreco() %></div>
+                    <div class="price"><%= curso.getPreco() %> MZN</div>
                 </div>
                 <div>
                     <button class="add-to-cart">Ver mais</button>
@@ -284,39 +285,39 @@ pageEncoding="UTF-8"%>
         const registerLink = document.getElementById('registerLink');
         const linksRequiringLogin = document.querySelectorAll('.login-required');
 
-        // Verificar se o modal de login deve ser exibido com base na sessão do usuário
+        
         const usuarioLogado = <%= session.getAttribute("usuarioLogado") != null ? "true" : "false" %>;
 
-        // Abrir o modal de login quando clicar na seção de login
+        
         loginSection.addEventListener('click', () => {
             if (!usuarioLogado) {
                 loginModal.style.display = 'block';
             }
         });
 
-        // Fechar o modal de login quando clicar no botão de fechar
+        
         loginCloseButton.addEventListener('click', () => {
             loginModal.style.display = 'none';
         });
 
-        // Abrir o modal de registro e fechar o modal de login ao clicar no link de registrar
+        
         registerLink.addEventListener('click', (event) => {
             event.preventDefault();
             loginModal.style.display = 'none';
             registerModal.style.display = 'block';
         });
 
-        // Verificar se o usuário está autenticado ao clicar nos links que exigem login
+        
         linksRequiringLogin.forEach(link => {
             link.addEventListener('click', (event) => {
                 if (!usuarioLogado) {
-                    event.preventDefault(); // Impedir a ação padrão do link
-                    loginModal.style.display = 'block'; // Exibir o modal de login
+                    event.preventDefault(); 
+                    loginModal.style.display = 'block'; 
                 }
             });
         });
 
-        // Verificar se a URL contém o fragmento #loginModal e exibir o modal de login se necessário
+        
         if (window.location.hash === '#loginModal' && !usuarioLogado) {
             loginModal.style.display = 'block';
         }

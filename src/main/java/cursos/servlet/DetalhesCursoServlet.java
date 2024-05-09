@@ -29,17 +29,17 @@ public class DetalhesCursoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         if (session.getAttribute("usuarioLogado") == null) {
-            // Se o usuário não estiver autenticado, redirecionar para o modal de login
+            
             response.sendRedirect("getcursos#loginModal");
             return;
         }
 
-        // Se o usuário estiver autenticado, prosseguir com a obtenção dos detalhes do curso
+        
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
         try {
-            // Obter o ID do curso da requisição
+            
             int cursoId = Integer.parseInt(request.getParameter("cursoId"));
 
             con = DB.getConnection();
@@ -48,7 +48,7 @@ public class DetalhesCursoServlet extends HttpServlet {
             rs = ps.executeQuery();
 
             if (rs.next()) {
-                // Criar um objeto CursosBean com os detalhes do curso
+                
                 CursosBean curso = new CursosBean();
                 curso.setId(rs.getInt("id_curso"));
                 curso.setTitulo(rs.getString("titulo"));
@@ -56,7 +56,7 @@ public class DetalhesCursoServlet extends HttpServlet {
                 curso.setDuracao(rs.getInt("duracao"));
                 curso.setPreco(rs.getDouble("preco"));
 
-                // Obter o banner como InputStream
+                
                 InputStream bannerInputStream = rs.getBinaryStream("banner");
                 if (bannerInputStream != null) {
                     byte[] bytes = bannerInputStream.readAllBytes();
@@ -64,7 +64,7 @@ public class DetalhesCursoServlet extends HttpServlet {
                     curso.setBannerBase64(base64Image);
                 }
 
-                // Buscar vídeos relacionados ao curso
+                
                 List<VideoBean> videos = new ArrayList<>();
                 ps = con.prepareStatement("SELECT * FROM videos WHERE id_curso = ?");
                 ps.setInt(1, cursoId);
@@ -78,20 +78,20 @@ public class DetalhesCursoServlet extends HttpServlet {
                 }
                 curso.setVideos(videos);
 
-                // Adicionar o curso como atributo na requisição
+                
                 request.setAttribute("curso", curso);
 
-                // Encaminhar para a página de detalhes do curso (course.jsp)
+                
                 request.getRequestDispatcher("course.jsp").forward(request, response);
             } else {
-                // Se o curso não for encontrado, redirecionar ou mostrar uma mensagem de erro
-                response.sendRedirect("error.jsp"); // Exemplo: redirecionar para página de erro
+                
+                response.sendRedirect("error.jsp"); 
             }
         } catch (NumberFormatException | SQLException e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp"); // Tratamento de erro: redirecionar para página de erro
+            response.sendRedirect("error.jsp"); 
         } finally {
-            // Fechar recursos do banco de dados
+            
             if (rs != null) {
                 try {
                     rs.close();

@@ -5,9 +5,9 @@ import java.sql.Blob;
 public class VideoBean {
     private int id;
     private String titulo;
-    private Blob video; // Blob representa o vídeo como um objeto binário
+    private Blob video; 
 
-    // Getters e Setters omitidos para brevidade
+    
 
     public int getId() {
         return id;

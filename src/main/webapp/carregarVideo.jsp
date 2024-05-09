@@ -63,15 +63,15 @@
         <input type="file" class="form-control-file" id="videoFile" name="videos" accept="video/*" multiple required>
       </div>
 
-      <!-- Botão para adicionar vídeo -->
-      <button type="button" id="addVideoButton" class="btn btn-primary mt-3">Adicionar Vídeo</button>
-      <button type="submit" class="btn btn-success mt-3">Enviar para Backend</button>
+      
+      
+      <button type="submit" class="btn btn-success mt-3">Enviar</button>
       <input type="hidden" id="videoDuration" name="videoDuration" value="">
       
     </form>
   </div>
 
-  <!-- Bootstrap JS -->
+  
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

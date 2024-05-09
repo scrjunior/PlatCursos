@@ -83,7 +83,7 @@
                 <h2><%= curso.getTitulo() %></h2>
                 <p><%= curso.getDescricao() %></p>
                 <p><strong>Duração:</strong> <%= curso.getDuracao() %> Horas</p>
-                <p><strong>Preço:</strong> R$ <%= curso.getPreco() %></p>
+                <p><strong>Preço:</strong> MZN <%= curso.getPreco() %></p>
             </div>
 
             <%-- Exibir lista de vídeos como um acordeão --%>

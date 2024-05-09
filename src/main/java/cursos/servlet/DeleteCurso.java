@@ -32,7 +32,7 @@ public class DeleteCurso extends HttpServlet {
             ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle any database errors
+            
         }
     }
 }

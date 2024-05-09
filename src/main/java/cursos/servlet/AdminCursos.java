@@ -46,27 +46,27 @@ public class AdminCursos extends HttpServlet {
                 curso.setDuracao(rs.getInt("duracao"));
                 curso.setPreco(rs.getDouble("preco"));
 
-                // Get the banner image as InputStream
+                
                 InputStream bannerInputStream = rs.getBinaryStream("banner");
-                // Convert InputStream to Base64-encoded String
+                
                 String base64Image = convertToBase64(bannerInputStream);
-                // Set the Base64-encoded image in the curso bean
+                
                 curso.setBannerBase64(base64Image);
 
                 cursos.add(curso);
             }
 
-            // Definir a lista de cursos como um atributo no objeto request
+            
             request.setAttribute("cursos", cursos);
 
-            // Encaminhar para a página JSP para exibir os cursos
+            
             request.getRequestDispatcher("AdminCursos.jsp").forward(request, response);
         } catch (SQLException e) {
             e.printStackTrace();
             request.setAttribute("error", "Error retrieving cursos");
             request.getRequestDispatcher("error.jsp").forward(request, response);
         } finally {
-            // Fechar recursos e conexão com o banco de dados
+            
             try {
                 if (rs != null) {
                     rs.close();

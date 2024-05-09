@@ -15,6 +15,9 @@ header .left-section {
 
 /*<<<Logo>>>>*/
 
+
+
+
 .logo-container {
     margin-left: 20px;
     width: 200px;
@@ -41,6 +44,7 @@ header .middle-section {
     align-items: center;
     max-width: 600px;
     margin-right: 40px;
+    justify-content:center;
 }
 
 .down-arrow {

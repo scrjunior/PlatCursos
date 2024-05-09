@@ -57,7 +57,7 @@
                     <h4 class="mt-3"><%= curso.getTitulo() %></h4>
                     <p><%= curso.getDescricao() %></p>
                     <p><strong>Duração:</strong> <%= curso.getDuracao() %> horas</p>
-                    <p><strong>Preço:</strong> R$ <%= curso.getPreco() %></p>
+                    <p><strong>Preço:</strong> MZN <%= curso.getPreco() %></p>
                     
                     <div class="curso-actions">
                         <a href="EditCurso?id=<%= curso.getId() %>" class="btn btn-primary mr-2 curso-link">Editar</a>
@@ -80,7 +80,11 @@
         </div>
     <% } %>
 </div>
-
+	
+	<a href="carregarVideo.jsp" class="btn btn-success mt-3 curso-link">
+	Criar curso
+	</a>
+	
     </div>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

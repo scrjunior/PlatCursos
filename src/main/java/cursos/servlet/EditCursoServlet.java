@@ -39,7 +39,7 @@ public class EditCursoServlet extends HttpServlet {
         try {
             con = DB.getConnection();
             
-            // Retrieve curso details
+            
             ps = con.prepareStatement("SELECT * FROM cursos WHERE id_curso = ?");
             ps.setInt(1, cursoId);
             rs = ps.executeQuery();
@@ -52,7 +52,7 @@ public class EditCursoServlet extends HttpServlet {
                 curso.setDuracao(rs.getInt("duracao"));
                 curso.setPreco(rs.getDouble("preco"));
 
-                // Retrieve related videos
+                
                 List<VideoBean> videos = new ArrayList<>();
                 ps = con.prepareStatement("SELECT * FROM videos WHERE id_curso = ?");
                 ps.setInt(1, cursoId);
@@ -62,18 +62,18 @@ public class EditCursoServlet extends HttpServlet {
                     VideoBean video = new VideoBean();
                     video.setId(rs.getInt("id_video"));
                     video.setTitulo(rs.getString("titulo"));
-                    // Assuming 'video' is a BLOB or similar, modify as needed
+                    
                     video.setVideo(rs.getBlob("video"));
                     videos.add(video);
                 }
 
                 curso.setVideos(videos);
 
-                // Set curso and videos as request attributes
+                
                 request.setAttribute("curso", curso);
                 request.setAttribute("videos", videos);
                 
-                // Forward to EditCurso.jsp
+                
                 request.getRequestDispatcher("EditCurso.jsp").forward(request, response);
             } else {
                 response.sendRedirect("AdminCursos");
@@ -83,7 +83,7 @@ public class EditCursoServlet extends HttpServlet {
             request.setAttribute("error", "Error retrieving curso details");
             request.getRequestDispatcher("error.jsp").forward(request, response);
         } finally {
-            // Close resources
+            
             try {
                 if (rs != null) rs.close();
                 if (ps != null) ps.close();

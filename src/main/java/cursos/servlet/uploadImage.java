@@ -27,17 +27,17 @@ public class uploadImage extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         try {
-            // Get form data for curso
+            
             String titulo = request.getParameter("titulo");
             String descricao = request.getParameter("descricao");
             int duracao = Integer.parseInt(request.getParameter("duracao"));
             double preco = Double.parseDouble(request.getParameter("preco"));
             
-            // Get uploaded banner image file
+            
             Part bannerPart = request.getPart("bannerImage");
             InputStream bannerInputStream = bannerPart.getInputStream();
 
-            // Insert curso data into cursos table
+            
             Connection con = null;
             PreparedStatement psCurso = null;
             ResultSet generatedKeys = null;
@@ -46,25 +46,25 @@ public class uploadImage extends HttpServlet {
                 con = DB.getConnection();
                 psCurso = con.prepareStatement("INSERT INTO cursos (titulo, descricao, duracao, preco, banner) VALUES (?, ?, ?, ?, ?)", PreparedStatement.RETURN_GENERATED_KEYS);
 
-                // Set curso data
+                
                 psCurso.setString(1, titulo);
                 psCurso.setString(2, descricao);
                 psCurso.setInt(3, duracao);
                 psCurso.setDouble(4, preco);
 
-                // Set banner image as BLOB
+                
                 psCurso.setBlob(5, bannerInputStream);
 
-                // Execute insert and get generated keys (if needed)
+                
                 psCurso.executeUpdate();
 
-                // Retrieve the auto-generated ID of the inserted curso
+                
                 int idCurso;
                 try (ResultSet generatedKeys1 = psCurso.getGeneratedKeys()) {
                     if (generatedKeys1.next()) {
                         idCurso = generatedKeys1.getInt(1);
 
-                        // Process uploaded videos
+                        
                         for (Part part : request.getParts()) {
                             if ("videos".equals(part.getName())) {
                                 String fileName = extractFileName(part);
@@ -82,16 +82,16 @@ public class uploadImage extends HttpServlet {
                             }
                         }
 
-                        response.sendRedirect("success.jsp");
+                        response.sendRedirect("AdminCursos");
                     } else {
                         throw new SQLException("Failed to retrieve auto-generated ID for curso.");
                     }
                 }
             } catch (SQLException e) {
-                e.printStackTrace(); // Handle SQL exception
+                e.printStackTrace(); 
                 response.sendRedirect("error.jsp");
             } finally {
-                // Close resources
+                
                 if (generatedKeys != null) {
                     try {
                         generatedKeys.close();
@@ -118,14 +118,14 @@ public class uploadImage extends HttpServlet {
                 }
             }
         } catch (Exception e) {
-            // Print error message to console
+            
             e.printStackTrace();
-            // Redirect to error page
+            
             response.sendRedirect("error.jsp");
         }
     }
 
-    // Method to extract file name from content-disposition header of part
+    
     private String extractFileName(Part part) {
         String contentDisposition = part.getHeader("content-disposition");
         String[] items = contentDisposition.split(";");
